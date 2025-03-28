@@ -33,7 +33,7 @@ app.use((req,res,next)=>{
 function getQuery(naturalQuery) {
     const lowerQuery = naturalQuery.toLowerCase();
   
-    if (lowerQuery.includes("all")) {
+    if (lowerQuery.includes("all") || lowerQuery.includes("*")) {
       return "SELECT * FROM inventory";
     }
   
@@ -43,7 +43,7 @@ function getQuery(naturalQuery) {
     if (productMatch && priceMatch) {
       return `SELECT price FROM inventory WHERE product='${productMatch[0]}'`;
     }
-    else if(productMatch){
+    else if(productMatch ){
         return `SELECT * FROM inventory WHERE product='${productMatch[0]}'`;
     
     }
@@ -65,7 +65,7 @@ app.post("/query",(req,res)=>{
     {
         res.status(400).json({error:"QUERY REQUIRED"});
     }
-    else if(naturalQuery.toLowerCase().includes("all"))
+    else if(naturalQuery.toLowerCase().includes("all") || lowerQuery.includes("*"))
     {
         res.json(db);
     }
