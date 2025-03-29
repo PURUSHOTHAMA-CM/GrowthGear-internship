@@ -18,7 +18,7 @@ const db={
 
 // authorizing using api key
 
-const apikey="secretkey";
+const apikey=process.env.API_KEY || "secretkey";
 
 app.use((req,res,next)=>{
     const token = req.header("api-key");
