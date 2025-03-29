@@ -2,7 +2,7 @@ import express from "express";
 import bodyParser from "body-parser";
 
 const app=express();
-const port=3000;
+const port = process.env.port || 3000;  
 
 app.use(bodyParser.urlencoded({extended:true}));
 
@@ -44,7 +44,7 @@ function getQuery(naturalQuery) {
       return `SELECT price FROM inventory WHERE product='${productMatch[0]}'`;
     }
     else if(productMatch ){
-        return `SELECT * FROM inventory WHERE product='${productMatch[0]}'`;
+        return `SELECT price FROM inventory WHERE product='${productMatch[0]}'`;
     
     }
   
@@ -65,7 +65,7 @@ app.post("/query",(req,res)=>{
     {
         res.status(400).json({error:"QUERY REQUIRED"});
     }
-    else if(naturalQuery.toLowerCase().includes("all") || lowerQuery.includes("*"))
+    else if(naturalQuery.toLowerCase().includes("all") || naturalQuery.includes("*"))
     {
         res.json(db);
     }
