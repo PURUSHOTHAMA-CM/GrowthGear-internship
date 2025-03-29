@@ -10,8 +10,8 @@ API Testing: Postman
 
   1. Clone the Repository
 
-      >> git clone <repository_url>
-      >> cd <project_directory>
+      >> git clone https://github.com/PURUSHOTHAMA-CM/GrowthGear-internship.git
+      >> cd GrowthGear
 
   2. Install Dependencies
 
